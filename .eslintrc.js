@@ -15,6 +15,7 @@ module.exports = {
     "*.png",
     "package.json",
     "package-lock.json",
+    "react-native-tooltip-3/lib/**/*"
   ],
   parser: "@typescript-eslint/parser",
   plugins: [

@@ -305,18 +305,16 @@ class Tooltip extends Component<TooltipProps, TooltipState> {
           this.childWrapper.current &&
           typeof this.childWrapper.current.measure === "function"
         ) {
-          this.childWrapper.current.measure(
-            (x, y, width, height, pageX, pageY) => {
-              const childRect = new Rect(pageX, pageY, width, height);
-              if (
-                Object.values(childRect).every((value) => value !== undefined)
-              ) {
-                this.onChildMeasurementComplete(childRect);
-              } else {
-                this.doChildlessPlacement();
-              }
-            },
-          );
+          this.childWrapper.current.measureInWindow((x, y, width, height) => {
+            const childRect = new Rect(x, y, width, height);
+            if (
+              Object.values(childRect).every((value) => value !== undefined)
+            ) {
+              this.onChildMeasurementComplete(childRect);
+            } else {
+              this.doChildlessPlacement();
+            }
+          });
         } else {
           this.doChildlessPlacement();
         }
